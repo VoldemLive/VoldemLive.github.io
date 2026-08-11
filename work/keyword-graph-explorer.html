@@ -15,7 +15,7 @@
 <body>
   <header class="site-header">
     <div class="shell nav">
-      <a class="brand" href="/" aria-label="Volodymyr Shynkarov home">VS<span>.</span></a>
+      <a class="brand" href="/" aria-label="Volodymyr Shynkarov home">Volodymyr Shynkarov<span>.</span></a>
       <button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button>
       <nav class="nav-links" aria-label="Main navigation"><a href="/#work">Work</a><a href="#system">System</a><a href="#evidence">Evidence</a><a class="nav-cta" href="https://github.com/VoldemLive">GitHub</a></nav>
     </div>
@@ -27,7 +27,7 @@
         <a class="breadcrumb" href="/#work">← Selected work</a>
         <span class="eyebrow case-eyebrow">Applied AI · App Store research</span>
         <h1>Keyword Path Explorer</h1>
-        <p class="case-summary">A working private ASO research tool that combines live App Store data, persistent workflows, novelty memory, and LLM analysis.</p>
+        <p class="case-summary">A private ASO research system that combines live App Store data, persistent workflows, novelty memory, and bounded LLM analysis.</p>
         <div class="case-meta">
           <div class="meta-block"><span>Role</span><strong>Sole developer</strong></div>
           <div class="meta-block"><span>Status</span><strong>Working private tool</strong></div>
@@ -55,18 +55,17 @@
           <section id="challenge">
             <span class="eyebrow">Challenge</span>
             <h2>Research without repeating the same paths.</h2>
-            <p>App Store keyword research produces large, noisy lists. Flat suggestions do not show whether a direction is coherent, competitive, or already exhausted. Manual research also repeats work across applications and research sessions.</p>
-            <p>I built Keyword Path Explorer for my own workflow. It connects live App Store data to a staged research pipeline and saves up to one hour per research cycle.</p>
+            <p>App Store research produces large, noisy keyword lists and repeats work across sessions. I built Keyword Path Explorer to connect live data to a staged research pipeline, preserve what has already been explored, and save up to one hour per research cycle.</p>
           </section>
 
           <section id="system">
             <span class="eyebrow">System</span>
             <h2>Four modes, one persistent workflow.</h2>
             <ol class="workflow">
-              <li><strong>Seed</strong><span>Starts from a known keyword, expands a graph through autocomplete and competitor terms, scores each branch, and stores the result in SQLite.</span></li>
-              <li><strong>Hunt</strong><span>Starts from a niche direction, finds applications in Astro, extracts their keywords, and searches for opportunities not already covered by the graph.</span></li>
-              <li><strong>CDH</strong><span>Runs Cast, Hunt, and LLM filtering as a complete competitive discovery cycle and returns ranked niche candidates.</span></li>
-              <li><strong>Market</strong><span>Combines a niche, selected keywords, competitor ratings, and reviews to generate a reviewable ASO positioning package.</span></li>
+              <li><strong>Seed</strong><span>Expands a known keyword through autocomplete and competitor terms, scores each branch, and stores the graph in SQLite.</span></li>
+              <li><strong>Hunt</strong><span>Starts from a niche direction and searches competitor keywords for opportunities not yet covered by the graph.</span></li>
+              <li><strong>CDH</strong><span>Combines Cast, Hunt, and LLM filtering into a competitive discovery cycle with ranked niche candidates.</span></li>
+              <li><strong>Market</strong><span>Turns selected keywords, ratings, and reviews into a positioning package ready for human review.</span></li>
             </ol>
             <div class="timing-grid">
               <div><span>Cast</span><strong>15–30 sec</strong><small>per application or keyword</small></div>
@@ -79,11 +78,10 @@
           <section id="decisions">
             <span class="eyebrow">Engineering decisions</span>
             <h2>Keep the model inside explicit boundaries.</h2>
-            <div class="decision"><strong>Live data through MCP.</strong><p>A custom App Store scraper and Astro provide current keyword, application, rating, and review data. The LLM does not invent market metrics.</p></div>
+            <div class="decision"><strong>Live data through MCP.</strong><p>A custom App Store scraper and Astro provide current keyword, application, rating, and review data. Market metrics never come from the model.</p></div>
             <div class="decision"><strong>Novelty Memory with decay.</strong><p>Processed keywords are stored with timestamps and weights. Recently repeated terms enter quarantine, while older directions gradually become eligible again.</p></div>
-            <div class="decision"><strong>Persistent priority queue.</strong><p>User-triggered Scan work runs at priority 10 before background Hunt work. FIFO ordering within a priority prevents long CDH runs from blocking manual research.</p></div>
+            <div class="decision"><strong>Persistent priority queue.</strong><p>User-triggered Scan work runs before background Hunt work. FIFO ordering prevents long discovery cycles from blocking manual research.</p></div>
             <div class="decision"><strong>LLM as one stage, not the system.</strong><p>DeepSeek through OpenRouter clusters, filters, and evaluates noisy batches. Queue state, persistence, thresholds, cleanup, and API contracts remain deterministic.</p></div>
-            <div class="decision"><strong>Isolated cleanup.</strong><p>Applications added by CDH are tracked separately and can be removed in batches without touching records added manually in Astro.</p></div>
           </section>
 
           <section id="evidence">
@@ -92,15 +90,15 @@
             <div class="shot-grid">
               <figure>
                 <a href="/assets/keyword-path-explorer/discoveries.png"><img loading="lazy" src="/assets/keyword-path-explorer/discoveries.png" alt="Discovery detail showing a niche hypothesis, market signal, and ranked keywords"></a>
-                <figcaption><strong>Discovery.</strong> A niche hypothesis is grounded in live popularity and difficulty metrics.</figcaption>
+                <figcaption><strong>Discovery.</strong> A niche hypothesis grounded in live popularity and difficulty metrics.</figcaption>
               </figure>
               <figure>
                 <a href="/assets/keyword-path-explorer/market-scan.png"><img loading="lazy" src="/assets/keyword-path-explorer/market-scan.png" alt="Competitive market scan showing entry points, review signals, and a competitor matrix"></a>
-                <figcaption><strong>Competitive scan.</strong> Public ratings and reviews expose entry points. If an AI conclusion is unavailable, the interface says so instead of fabricating one.</figcaption>
+                <figcaption><strong>Competitive scan.</strong> Ratings and reviews expose entry points; unavailable conclusions remain explicitly unavailable.</figcaption>
               </figure>
               <figure class="wide">
                 <a href="/assets/keyword-path-explorer/market-package.png"><img loading="lazy" src="/assets/keyword-path-explorer/market-package.png" alt="Generated ASO package with positioning, name options, keyword strategy, and listing copy"></a>
-                <figcaption><strong>Market package.</strong> The final output groups positioning, name options, keyword strategy, and listing copy for human review.</figcaption>
+                <figcaption><strong>Market package.</strong> Positioning, naming, keyword strategy, and listing copy prepared for human review.</figcaption>
               </figure>
             </div>
           </section>
@@ -108,7 +106,7 @@
           <section id="testing">
             <span class="eyebrow">Testing</span>
             <h2>Deterministic core, isolated integrations.</h2>
-            <p>The Vitest suite uses in-memory SQLite, so tests never touch the real <code>novelty.db</code>. Pure scoring and graph behavior stay deterministic; Fastify, Astro, and App Store boundaries are mocked where appropriate. A separate LLM suite includes live tests that run only when an API key is available.</p>
+            <p>Vitest uses in-memory SQLite, so tests never touch the real <code>novelty.db</code>. Scoring and graph behavior remain deterministic; Fastify, Astro, and App Store boundaries are mocked where appropriate. Live LLM tests run separately when an API key is available.</p>
             <div class="test-grid">
               <span><strong>18</strong> novelty</span><span><strong>23</strong> graph</span><span><strong>17</strong> CDH</span><span><strong>13</strong> hunt</span><span><strong>20</strong> queue</span><span><strong>6</strong> API</span><span><strong>5</strong> mechanical</span><span><strong>2</strong> MCP server</span>
             </div>
