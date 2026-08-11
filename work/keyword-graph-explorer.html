@@ -1,1 +1,139 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Keyword Graph Explorer — Volodymyr Shynkarov</title><meta name="description" content="A graph-based keyword discovery service that combines live App Store metrics, semantic expansion, and cross-run novelty memory."><link rel="stylesheet" href="/styles.css"></head><body><header class="site-header"><div class="shell nav"><a class="brand" href="/">VS<span>.</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="/#work">Work</a><a href="/#capabilities">Capabilities</a><a href="/#about">About</a><a class="nav-cta" href="https://github.com/VoldemLive">GitHub</a></nav></div></header><main><section class="case-hero"><div class="shell"><a class="breadcrumb" href="/#work">← Selected work</a><span class="eyebrow" style="margin-top:38px">AI discovery · App Store intelligence</span><h1>Keyword Graph Explorer</h1><p class="case-summary">A graph-based keyword discovery service that combines live App Store metrics, semantic expansion, and cross-run novelty memory.</p><div class="case-meta"><div class="meta-block"><span>Role</span><strong>Product architecture & implementation</strong></div><div class="meta-block"><span>Visibility</span><strong>Private source</strong></div><div class="meta-block"><span>Status</span><strong>Working private service</strong></div><div class="meta-block"><span>Walkthrough</span><strong>Available on request</strong></div></div></div></section><section class="section"><div class="shell case-layout"><aside class="case-nav"><a href="#challenge">Challenge</a><a href="#approach">Approach</a><a href="#decisions">Decisions</a><a href="#stack">Stack</a><a href="#walkthrough">Walkthrough</a></aside><div class="case-content"><section id="challenge"><span class="eyebrow">Challenge</span><h2>What needed to change</h2><p>Flat synonym lists do not explain whether a keyword direction is commercially viable, coherent, or exhausted. The service needed to explore multiple branches, validate them with real metrics, and report partial results honestly when a target could not be reached.</p></section><section id="approach"><span class="eyebrow">Approach</span><h2>How the system works</h2><p>Seed Mode grows depth-prioritized branches from a known keyword. Hunt Mode begins from a natural-language product context, proposes candidate seeds, validates them, and then launches the same graph exploration pipeline.</p><p>Candidate generation mixes semantic neighbors, pivots, mechanical variants, and escape strategies. Live metrics, duplicate detection, cycle prevention, and domain-drift checks decide which paths continue.</p></section><section id="decisions"><span class="eyebrow">Engineering decisions</span><h2>Trade-offs made explicit</h2><div class='decision'><strong>Completion before vanity score.</strong><p>A coherent branch that reaches the requested depth is more useful than a short high-scoring dead end.</p></div><div class='decision'><strong>Honest partial fulfillment.</strong><p>The API reports shortfalls and reasons instead of fabricating a complete answer.</p></div><div class='decision'><strong>Memory with decay.</strong><p>Useful leaves are rewarded across runs while exhausted directions lose priority over time.</p></div></section><section id="stack"><span class="eyebrow">Technology</span><h2>Stack</h2><ul class="stack-list"><li>TypeScript</li><li>Fastify</li><li>OpenAI</li><li>Model Context Protocol</li><li>SQLite</li><li>Zod</li><li>Vitest</li><li>React</li></ul></section><section id="walkthrough"><div class="demo-panel"><small>Private product walkthrough</small><h2>Guided demo available on request.</h2><p>The walkthrough will cover Seed Mode, Hunt Mode, branch inspection, fulfillment reporting, and how live metrics influence exploration.</p><!-- DEMO SLOT: Replace this panel with a linked thumbnail or video embed after the owner records a sanitized walkthrough. --></div></section></div></div></section></main><footer class="site-footer"><div class="shell footer-row"><span>© <span class="year"></span> Volodymyr Shynkarov</span><span>Full-Stack & AI Product Engineer · Chicago</span></div></footer><script src="/script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Keyword Path Explorer — Volodymyr Shynkarov</title>
+  <meta name="description" content="A working ASO research tool combining live App Store data, persistent workflows, novelty memory, and LLM analysis.">
+  <meta property="og:title" content="Keyword Path Explorer — Case Study">
+  <meta property="og:description" content="Live data, persistent queues, novelty memory, LLM analysis, and 104+ automated tests.">
+  <meta property="og:image" content="https://voldemlive.github.io/assets/keyword-path-explorer/discoveries.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://voldemlive.github.io/work/keyword-graph-explorer.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="/" aria-label="Volodymyr Shynkarov home">Volodymyr Shynkarov<span>.</span></a>
+      <button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Main navigation"><a href="/#work">Work</a><a href="#system">System</a><a href="#evidence">Evidence</a><a class="nav-cta" href="https://github.com/VoldemLive">GitHub</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <div class="shell">
+        <a class="breadcrumb" href="/#work">← Selected work</a>
+        <span class="eyebrow case-eyebrow">Applied AI · App Store research</span>
+        <h1>Keyword Path Explorer</h1>
+        <p class="case-summary">A private ASO research system that combines live App Store data, persistent workflows, novelty memory, and bounded LLM analysis.</p>
+        <div class="case-meta">
+          <div class="meta-block"><span>Role</span><strong>Sole developer</strong></div>
+          <div class="meta-block"><span>Status</span><strong>Working private tool</strong></div>
+          <div class="meta-block"><span>Impact</span><strong>Up to 1 hour saved</strong></div>
+          <div class="meta-block"><span>Verification</span><strong>104+ automated tests</strong></div>
+        </div>
+        <a class="case-cover" href="/assets/keyword-path-explorer/queue-console.png">
+          <img src="/assets/keyword-path-explorer/queue-console.png" alt="Keyword Path Explorer queue console showing active and pending research tasks with service health status">
+        </a>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="shell case-layout">
+        <aside class="case-nav" aria-label="Case study navigation">
+          <a href="#challenge">Challenge</a>
+          <a href="#system">System</a>
+          <a href="#decisions">Decisions</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#testing">Testing</a>
+          <a href="#limits">Limits</a>
+        </aside>
+
+        <div class="case-content">
+          <section id="challenge">
+            <span class="eyebrow">Challenge</span>
+            <h2>Research without repeating the same paths.</h2>
+            <p>App Store research produces large, noisy keyword lists and repeats work across sessions. I built Keyword Path Explorer to connect live data to a staged research pipeline, preserve what has already been explored, and save up to one hour per research cycle.</p>
+          </section>
+
+          <section id="system">
+            <span class="eyebrow">System</span>
+            <h2>Four modes, one persistent workflow.</h2>
+            <ol class="workflow">
+              <li><strong>Seed</strong><span>Expands a known keyword through autocomplete and competitor terms, scores each branch, and stores the graph in SQLite.</span></li>
+              <li><strong>Hunt</strong><span>Starts from a niche direction and searches competitor keywords for opportunities not yet covered by the graph.</span></li>
+              <li><strong>CDH</strong><span>Combines Cast, Hunt, and LLM filtering into a competitive discovery cycle with ranked niche candidates.</span></li>
+              <li><strong>Market</strong><span>Turns selected keywords, ratings, and reviews into a positioning package ready for human review.</span></li>
+            </ol>
+            <div class="timing-grid">
+              <div><span>Cast</span><strong>15–30 sec</strong><small>per application or keyword</small></div>
+              <div><span>Discovery</span><strong>~5 min</strong><small>per application</small></div>
+              <div><span>Scan</span><strong>~5 min</strong><small>per application</small></div>
+              <div><span>Market</span><strong>5–10 min</strong><small>per package</small></div>
+            </div>
+          </section>
+
+          <section id="decisions">
+            <span class="eyebrow">Engineering decisions</span>
+            <h2>Keep the model inside explicit boundaries.</h2>
+            <div class="decision"><strong>Live data through MCP.</strong><p>A custom App Store scraper and Astro provide current keyword, application, rating, and review data. Market metrics never come from the model.</p></div>
+            <div class="decision"><strong>Novelty Memory with decay.</strong><p>Processed keywords are stored with timestamps and weights. Recently repeated terms enter quarantine, while older directions gradually become eligible again.</p></div>
+            <div class="decision"><strong>Persistent priority queue.</strong><p>User-triggered Scan work runs before background Hunt work. FIFO ordering prevents long discovery cycles from blocking manual research.</p></div>
+            <div class="decision"><strong>LLM as one stage, not the system.</strong><p>DeepSeek through OpenRouter clusters, filters, and evaluates noisy batches. Queue state, persistence, thresholds, cleanup, and API contracts remain deterministic.</p></div>
+          </section>
+
+          <section id="evidence">
+            <span class="eyebrow">Product evidence</span>
+            <h2>From direction to reviewable output.</h2>
+            <div class="shot-grid">
+              <figure>
+                <a href="/assets/keyword-path-explorer/discoveries.png"><img loading="lazy" src="/assets/keyword-path-explorer/discoveries.png" alt="Discovery detail showing a niche hypothesis, market signal, and ranked keywords"></a>
+                <figcaption><strong>Discovery.</strong> A niche hypothesis grounded in live popularity and difficulty metrics.</figcaption>
+              </figure>
+              <figure>
+                <a href="/assets/keyword-path-explorer/market-scan.png"><img loading="lazy" src="/assets/keyword-path-explorer/market-scan.png" alt="Competitive market scan showing entry points, review signals, and a competitor matrix"></a>
+                <figcaption><strong>Competitive scan.</strong> Ratings and reviews expose entry points; unavailable conclusions remain explicitly unavailable.</figcaption>
+              </figure>
+              <figure class="wide">
+                <a href="/assets/keyword-path-explorer/market-package.png"><img loading="lazy" src="/assets/keyword-path-explorer/market-package.png" alt="Generated ASO package with positioning, name options, keyword strategy, and listing copy"></a>
+                <figcaption><strong>Market package.</strong> Positioning, naming, keyword strategy, and listing copy prepared for human review.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section id="testing">
+            <span class="eyebrow">Testing</span>
+            <h2>Deterministic core, isolated integrations.</h2>
+            <p>Vitest uses in-memory SQLite, so tests never touch the real <code>novelty.db</code>. Scoring and graph behavior remain deterministic; Fastify, Astro, and App Store boundaries are mocked where appropriate. Live LLM tests run separately when an API key is available.</p>
+            <div class="test-grid">
+              <span><strong>18</strong> novelty</span><span><strong>23</strong> graph</span><span><strong>17</strong> CDH</span><span><strong>13</strong> hunt</span><span><strong>20</strong> queue</span><span><strong>6</strong> API</span><span><strong>5</strong> mechanical</span><span><strong>2</strong> MCP server</span>
+            </div>
+          </section>
+
+          <section id="limits">
+            <span class="eyebrow">Current limits</span>
+            <h2>What the evidence does not claim.</h2>
+            <ul>
+              <li>This is a single-user private tool, not an organization-wide deployment.</li>
+              <li>LLM output can be incomplete and requires human review.</li>
+              <li>Run time and result quality depend on external App Store, Astro, and model availability.</li>
+              <li>The screenshots use public App Store research data and do not imply affiliation with the applications or brands shown.</li>
+            </ul>
+          </section>
+
+          <section>
+            <span class="eyebrow">Technology</span>
+            <h2>Stack</h2>
+            <ul class="stack-list"><li>Node.js 22</li><li>TypeScript</li><li>Fastify</li><li>React</li><li>Vite</li><li>Tailwind CSS</li><li>SQLite</li><li>Vitest</li><li>OpenRouter</li><li>DeepSeek</li><li>MCP</li><li>JSON-RPC</li></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-row"><span>© <span class="year"></span> Volodymyr Shynkarov</span><span>Full-Stack Developer · Chicago</span></div></footer>
+  <script src="/script.js"></script>
+</body>
+</html>
