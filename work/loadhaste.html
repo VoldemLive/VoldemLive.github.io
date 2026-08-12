@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LoadHaste — Volodymyr Shynkarov</title>
+  <meta name="description" content="A freight search workflow that coordinates vehicle criteria, containerized marketplace workers, matched loads, routes, and broker communication.">
+  <meta property="og:image" content="https://voldemlive.github.io/assets/loadhaste/dashboard.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://voldemlive.github.io/work/loadhaste.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="/" aria-label="Volodymyr Shynkarov home">Volodymyr Shynkarov<span>.</span></a>
+      <button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Main navigation"><a href="/#work">Work</a><a href="#approach">System</a><a href="#evidence">Evidence</a><a class="nav-cta" href="https://github.com/VoldemLive">GitHub</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <div class="shell">
+        <a class="breadcrumb" href="/#work">← Selected work</a>
+        <span class="eyebrow case-eyebrow">Operations automation · Container orchestration</span>
+        <h1>LoadHaste</h1>
+        <p class="case-summary">A freight search system for small carriers that turns vehicle requirements into monitored searches, matched loads, route context, and broker communication.</p>
+        <div class="case-meta">
+          <div class="meta-block"><span>Workflow</span><strong>Freight operations</strong></div>
+          <div class="meta-block"><span>Architecture</span><strong>Three independent services</strong></div>
+          <div class="meta-block"><span>Workers</span><strong>Demand-driven containers</strong></div>
+          <div class="meta-block"><span>Live product</span><strong><a href="https://loadhaste.com/" target="_blank" rel="noopener noreferrer">Open website ↗</a></strong></div>
+        </div>
+        <a class="case-cover" href="/assets/loadhaste/dashboard.png" data-lightbox>
+          <img src="/assets/loadhaste/dashboard.png" alt="LoadHaste dashboard combining active vehicles, matched freight, route details, and communication options">
+        </a>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="shell case-layout">
+        <aside class="case-nav" aria-label="Case study navigation"><a href="#challenge">Challenge</a><a href="#approach">System</a><a href="#decisions">Decisions</a><a href="#evidence">Evidence</a><a href="#stack">Stack</a></aside>
+        <div class="case-content">
+          <section id="challenge">
+            <span class="eyebrow">Challenge</span>
+            <h2>Replace repetitive board monitoring with one operational workflow.</h2>
+            <p>Dispatchers at small carriers repeatedly check freight marketplaces, compare each load with vehicle constraints, inspect routes, and contact brokers. LoadHaste centralizes that workflow while keeping searches tied to the actual fleet.</p>
+          </section>
+
+          <section id="approach">
+            <span class="eyebrow">System</span>
+            <h2>Keep the interface, orchestration, and acquisition workers independent.</h2>
+            <p>A Next.js application manages vehicles, search criteria, results, routes, and conversations. A Node.js core service is the only component allowed to control Docker. Isolated browser workers collect marketplace data, while Supabase provides shared persistence.</p>
+          </section>
+
+          <section id="decisions">
+            <span class="eyebrow">Engineering decisions</span>
+            <h2>Spend infrastructure only when active work needs it.</h2>
+            <div class="decision"><strong>Demand-driven worker pool.</strong><p>The orchestrator starts marketplace workers only when active searches exist and stops them when the queue is empty.</p></div>
+            <div class="decision"><strong>Grace-period health checks.</strong><p>Workers receive time for interactive login, tolerate transient failures, and restart only after repeated unsuccessful checks.</p></div>
+            <div class="decision"><strong>Recovery from incomplete shutdowns.</strong><p>Before creating a worker, the core removes orphaned containers left by previous failed runs.</p></div>
+            <div class="decision"><strong>Semantic deduplication.</strong><p>A SHA-256 signature over meaningful load fields lets a database constraint reject duplicates without trusting marketplace identifiers.</p></div>
+            <div class="decision"><strong>Self-healing persistence pool.</strong><p>Connection states, FIFO waiting, idle eviction, and automatic replacement keep the application responsive through transient failures.</p></div>
+          </section>
+
+          <section id="evidence">
+            <span class="eyebrow">Product evidence</span>
+            <h2>One interface connects the full dispatch workflow.</h2>
+            <div class="shot-grid">
+              <figure class="wide">
+                <a href="/assets/loadhaste/dashboard.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/dashboard.png" alt="LoadHaste dashboard with fleet monitoring, matched loads, a route map, and load details"></a>
+                <figcaption><strong>Operational dashboard.</strong> A dispatcher can activate vehicle searches, review matched freight, inspect the route, and choose a broker contact method without switching systems.</figcaption>
+              </figure>
+              <figure>
+                <a href="/assets/loadhaste/search-configuration.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/search-configuration.png" alt="LoadHaste search configuration modal for a fleet vehicle"></a>
+                <figcaption><strong>Search criteria.</strong> Pickup dates, origin radius, destination, cargo dimensions, weight, and load types define the work assigned to a vehicle.</figcaption>
+              </figure>
+              <figure>
+                <a href="/assets/loadhaste/vehicle-management.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/vehicle-management.png" alt="LoadHaste vehicle management table with fleet status and actions"></a>
+                <figcaption><strong>Fleet context.</strong> Vehicle records and active status provide the operating context for monitored freight searches.</figcaption>
+              </figure>
+              <figure class="wide">
+                <a href="/assets/loadhaste/mail.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/mail.png" alt="LoadHaste mail workspace showing freight conversations linked to vehicles and routes"></a>
+                <figcaption><strong>Broker communication.</strong> Email threads remain linked to a vehicle and route, keeping the negotiation context inside the same operational workflow.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section id="stack">
+            <span class="eyebrow">Technology</span><h2>Stack</h2>
+            <ul class="stack-list"><li>Next.js 15</li><li>React 19</li><li>Node.js</li><li>Docker Compose</li><li>Docker Engine API</li><li>Puppeteer</li><li>Supabase</li><li>Postgres</li><li>Zustand</li><li>SWR</li><li>Leaflet</li></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-row"><span>© <span class="year"></span> Volodymyr Shynkarov</span><span>Full-Stack Developer · Chicago</span></div></footer>
+  <script src="/script.js"></script>
+</body>
+</html>

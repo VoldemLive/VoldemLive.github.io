@@ -1,1 +1,97 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Battle 2048 — Volodymyr Shynkarov</title><meta name="description" content="A competitive multiplayer adaptation of 2048 with live matches, strategic attack mechanics, AI opponents, and persistent player data."><link rel="stylesheet" href="/styles.css"></head><body><header class="site-header"><div class="shell nav"><a class="brand" href="/">VS<span>.</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button><nav class="nav-links" aria-label="Main navigation"><a href="/#work">Work</a><a href="/#capabilities">Capabilities</a><a href="/#about">About</a><a class="nav-cta" href="https://github.com/VoldemLive">GitHub</a></nav></div></header><main><section class="case-hero"><div class="shell"><a class="breadcrumb" href="/#work">← Selected work</a><span class="eyebrow" style="margin-top:38px">Real-time product · Multiplayer systems</span><h1>Battle 2048</h1><p class="case-summary">A competitive multiplayer adaptation of 2048 with live matches, strategic attack mechanics, AI opponents, and persistent player data.</p><div class="case-meta"><div class="meta-block"><span>Role</span><strong>Full-stack product engineering</strong></div><div class="meta-block"><span>Visibility</span><strong>Private source</strong></div><div class="meta-block"><span>Status</span><strong>Live product</strong></div><div class="meta-block"><span>Product</span><strong><a href="https://battle2048.com/">Play online ↗</a></strong></div></div></div></section><section class="section"><div class="shell case-layout"><aside class="case-nav"><a href="#challenge">Challenge</a><a href="#approach">Approach</a><a href="#decisions">Decisions</a><a href="#stack">Stack</a><a href="#walkthrough">Walkthrough</a></aside><div class="case-content"><section id="challenge"><span class="eyebrow">Challenge</span><h2>What needed to change</h2><p>Classic 2048 is deterministic and single-player. Turning it into a competitive product required a real-time match model, clear synchronization rules, matchmaking, player identity, and mechanics that make two boards affect one another.</p></section><section id="approach"><span class="eyebrow">Approach</span><h2>How the system works</h2><p>The product separates a Next.js client from a Socket.IO server. The server manages lobbies, match events, player statistics, rate limits, and metrics; the client owns interaction, animation, internationalized UI, and local product state.</p></section><section id="decisions"><span class="eyebrow">Engineering decisions</span><h2>Trade-offs made explicit</h2><div class='decision'><strong>Dedicated real-time server.</strong><p>Match state and player events use Socket.IO rather than polling or database-driven synchronization.</p></div><div class='decision'><strong>Product mechanics beyond the base puzzle.</strong><p>Attack, heal, AI opponents, and leaderboards create a competitive loop.</p></div><div class='decision'><strong>Client and server evolve independently.</strong><p>Separate repositories clarify deployment, testing, and runtime responsibilities.</p></div></section><section id="stack"><span class="eyebrow">Technology</span><h2>Stack</h2><ul class="stack-list"><li>Next.js</li><li>React</li><li>Socket.IO</li><li>Express</li><li>Supabase</li><li>Zustand</li><li>Tailwind CSS</li><li>Docker</li></ul></section><section id="walkthrough"><div class="demo-panel"><small>Live product</small><h2>Play Battle 2048 online.</h2><p>Try matchmaking, live rounds, attack and recovery mechanics, AI opponents, and leaderboard persistence in the deployed product.</p><a class="button primary" href="https://battle2048.com/">Open Battle 2048 ↗</a></div></section></div></div></section></main><footer class="site-footer"><div class="shell footer-row"><span>© <span class="year"></span> Volodymyr Shynkarov</span><span>Full-Stack & AI Product Engineer · Chicago</span></div></footer><script src="/script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Battle 2048 — Volodymyr Shynkarov</title>
+  <meta name="description" content="A competitive multiplayer adaptation of 2048 with live matches, strategic attack mechanics, AI opponents, and persistent player data.">
+  <meta property="og:image" content="https://voldemlive.github.io/assets/battle-2048/damage-state.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://voldemlive.github.io/work/battle-2048.html">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="/" aria-label="Volodymyr Shynkarov home">Volodymyr Shynkarov<span>.</span></a>
+      <button class="menu-button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+      <nav class="nav-links" aria-label="Main navigation"><a href="/#work">Work</a><a href="#approach">System</a><a href="#evidence">Evidence</a><a class="nav-cta" href="https://github.com/VoldemLive">GitHub</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <div class="shell">
+        <a class="breadcrumb" href="/#work">← Selected work</a>
+        <span class="eyebrow case-eyebrow">Real-time product · Multiplayer systems</span>
+        <h1>Battle 2048</h1>
+        <p class="case-summary">A real-time PvP adaptation of 2048 where two players develop separate boards and attack each other by converting their own tiles into damage.</p>
+        <div class="case-meta">
+          <div class="meta-block"><span>System</span><strong>Client + realtime server</strong></div>
+          <div class="meta-block"><span>Interface</span><strong>13 languages</strong></div>
+          <div class="meta-block"><span>Data</span><strong>Persistent match statistics</strong></div>
+          <div class="meta-block"><span>Live product</span><strong><a href="https://battle2048.com/" target="_blank" rel="noopener noreferrer">Play online ↗</a></strong></div>
+        </div>
+        <a class="case-cover" href="/assets/battle-2048/damage-state.png" data-lightbox>
+          <img src="/assets/battle-2048/damage-state.png" alt="Battle 2048 live match with player and opponent boards, health indicators, and a damaged board cell">
+        </a>
+      </div>
+    </section>
+
+    <section class="section compact">
+      <div class="shell case-layout">
+        <aside class="case-nav" aria-label="Case study navigation"><a href="#challenge">Challenge</a><a href="#approach">System</a><a href="#decisions">Decisions</a><a href="#evidence">Evidence</a><a href="#stack">Stack</a></aside>
+        <div class="case-content">
+          <section id="challenge">
+            <span class="eyebrow">Challenge</span>
+            <h2>Turn a solitary puzzle into a synchronized contest.</h2>
+            <p>Competitive play adds simultaneous input, shared combat state, disconnects, rematches, matchmaking, AI opponents, and animations that must remain consistent with server state.</p>
+          </section>
+
+          <section id="approach">
+            <span class="eyebrow">System</span>
+            <h2>Separate product interaction from match authority.</h2>
+            <p>A Next.js client owns interaction, animation, localization, and domain-based UI state. A dedicated Node.js and Socket.IO service owns rooms, game rules, concurrent actions, rate limits, and match lifecycle. Supabase stores users, history, statistics, server registry, and operational metrics.</p>
+          </section>
+
+          <section id="decisions">
+            <span class="eyebrow">Engineering decisions</span>
+            <h2>Design explicitly for concurrency and recovery.</h2>
+            <div class="decision"><strong>Serialized actions per room.</strong><p>A FIFO action queue prevents simultaneous socket events from racing and corrupting either board.</p></div>
+            <div class="decision"><strong>Client-side board diffing.</strong><p>The interface compares previous and current board state to classify spawns, movement, attack removal, and persistent tile identities.</p></div>
+            <div class="decision"><strong>Adaptive AI behavior.</strong><p>Difficulty changes heuristic weights, attack thresholds, lookahead depth, choice randomness, and human-paced timing rather than applying a simple speed multiplier.</p></div>
+            <div class="decision"><strong>Incremental leaderboard statistics.</strong><p>Postgres updates period aggregates when a game is recorded, avoiding a full-history aggregation for every leaderboard request.</p></div>
+          </section>
+
+          <section id="evidence">
+            <span class="eyebrow">Product evidence</span>
+            <h2>Interaction follows a clear information hierarchy.</h2>
+            <div class="shot-grid">
+              <figure>
+                <a href="/assets/battle-2048/home.png" data-lightbox><img loading="lazy" src="/assets/battle-2048/home.png" alt="Battle 2048 home screen with region, language, quick game, friends, and leaderboard controls"></a>
+                <figcaption><strong>Entry point.</strong> Region selection, localization, quick matchmaking, private matches, and leaderboards share one focused start screen.</figcaption>
+              </figure>
+              <figure>
+                <a href="/assets/battle-2048/live-match.png" data-lightbox><img loading="lazy" src="/assets/battle-2048/live-match.png" alt="Battle 2048 match showing both players and their synchronized boards"></a>
+                <figcaption><strong>Live match.</strong> Both boards and health states remain visible while the player’s board keeps interaction priority.</figcaption>
+              </figure>
+              <figure class="wide">
+                <a href="/assets/battle-2048/damage-state.png" data-lightbox><img loading="lazy" src="/assets/battle-2048/damage-state.png" alt="Battle 2048 match after an attack with reduced health and a blocked board cell"></a>
+                <figcaption><strong>Responsive combat state.</strong> The player’s full interactive board remains primary; the opponent’s board is secondary context and may crop when vertical space is limited. Health and blocked cells preserve the information needed for the next move.</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section id="stack">
+            <span class="eyebrow">Technology</span><h2>Stack</h2>
+            <ul class="stack-list"><li>Next.js 15</li><li>React 19</li><li>Node.js</li><li>Socket.IO</li><li>Supabase</li><li>Zustand</li><li>Framer Motion</li><li>next-intl</li><li>Fly.io</li></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-row"><span>© <span class="year"></span> Volodymyr Shynkarov</span><span>Full-Stack Developer · Chicago</span></div></footer>
+  <script src="/script.js"></script>
+</body>
+</html>
