@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>LoadHaste — Volodymyr Shynkarov</title>
   <meta name="description" content="A freight search workflow that coordinates vehicle criteria, containerized marketplace workers, matched loads, routes, and broker communication.">
-  <meta property="og:image" content="https://voldemlive.github.io/assets/loadhaste/search-configuration.png">
+  <meta property="og:image" content="https://voldemlive.github.io/assets/loadhaste/dashboard.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://voldemlive.github.io/work/loadhaste.html">
   <link rel="stylesheet" href="/styles.css">
@@ -27,13 +27,13 @@
         <h1>LoadHaste</h1>
         <p class="case-summary">A freight search system for small carriers that turns vehicle requirements into monitored searches, matched loads, route context, and broker communication.</p>
         <div class="case-meta">
-          <div class="meta-block"><span>Product</span><strong>Freight operations workflow</strong></div>
+          <div class="meta-block"><span>Workflow</span><strong>Freight operations</strong></div>
           <div class="meta-block"><span>Architecture</span><strong>Three independent services</strong></div>
           <div class="meta-block"><span>Workers</span><strong>Demand-driven containers</strong></div>
-          <div class="meta-block"><span>Persistence</span><strong>Supabase / Postgres</strong></div>
+          <div class="meta-block"><span>Live product</span><strong><a href="https://loadhaste.com/" target="_blank" rel="noopener noreferrer">Open website ↗</a></strong></div>
         </div>
-        <a class="case-cover" href="/assets/loadhaste/search-configuration.png" data-lightbox>
-          <img src="/assets/loadhaste/search-configuration.png" alt="LoadHaste vehicle search configuration with pickup dates, origin, radius, destination, cargo dimensions, and load types">
+        <a class="case-cover" href="/assets/loadhaste/dashboard.png" data-lightbox>
+          <img src="/assets/loadhaste/dashboard.png" alt="LoadHaste dashboard combining active vehicles, matched freight, route details, and communication options">
         </a>
       </div>
     </section>
@@ -66,8 +66,12 @@
 
           <section id="evidence">
             <span class="eyebrow">Product evidence</span>
-            <h2>Search configuration stays attached to the fleet.</h2>
+            <h2>One interface connects the full dispatch workflow.</h2>
             <div class="shot-grid">
+              <figure class="wide">
+                <a href="/assets/loadhaste/dashboard.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/dashboard.png" alt="LoadHaste dashboard with fleet monitoring, matched loads, a route map, and load details"></a>
+                <figcaption><strong>Operational dashboard.</strong> A dispatcher can activate vehicle searches, review matched freight, inspect the route, and choose a broker contact method without switching systems.</figcaption>
+              </figure>
               <figure>
                 <a href="/assets/loadhaste/search-configuration.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/search-configuration.png" alt="LoadHaste search configuration modal for a fleet vehicle"></a>
                 <figcaption><strong>Search criteria.</strong> Pickup dates, origin radius, destination, cargo dimensions, weight, and load types define the work assigned to a vehicle.</figcaption>
@@ -75,6 +79,10 @@
               <figure>
                 <a href="/assets/loadhaste/vehicle-management.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/vehicle-management.png" alt="LoadHaste vehicle management table with fleet status and actions"></a>
                 <figcaption><strong>Fleet context.</strong> Vehicle records and active status provide the operating context for monitored freight searches.</figcaption>
+              </figure>
+              <figure class="wide">
+                <a href="/assets/loadhaste/mail.png" data-lightbox><img loading="lazy" src="/assets/loadhaste/mail.png" alt="LoadHaste mail workspace showing freight conversations linked to vehicles and routes"></a>
+                <figcaption><strong>Broker communication.</strong> Email threads remain linked to a vehicle and route, keeping the negotiation context inside the same operational workflow.</figcaption>
               </figure>
             </div>
           </section>

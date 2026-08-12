@@ -175,6 +175,8 @@ p { margin-top: 0; }
 .project-card-copy h3 { margin: 15px 0 12px; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.45rem); font-weight: 620; }
 .project-card-copy p { color: var(--muted); }
 .project-card-copy .tags { margin: 20px 0; }
+.project-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+.external-link { color: var(--teal); text-decoration-color: rgba(23, 109, 107, .48); }
 
 .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .cap {
