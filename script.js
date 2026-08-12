@@ -10,9 +10,9 @@ document.querySelectorAll(".year").forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
 
-const lightboxLinks = [...document.querySelectorAll("[data-lightbox]")];
+const lightboxTriggers = [...document.querySelectorAll("[data-lightbox]")];
 
-if (lightboxLinks.length) {
+if (lightboxTriggers.length) {
   const lightbox = document.createElement("div");
   lightbox.className = "lightbox";
   lightbox.hidden = true;
@@ -26,10 +26,12 @@ if (lightboxLinks.length) {
     </div>
     <div class="lightbox-stage">
       <button class="lightbox-nav lightbox-prev" type="button" aria-label="Previous image">‹</button>
-      <div class="lightbox-media"><img class="lightbox-image" alt=""></div>
+      <div class="lightbox-media">
+        <img class="lightbox-image" alt="">
+        <p class="lightbox-caption" aria-live="polite"></p>
+      </div>
       <button class="lightbox-nav lightbox-next" type="button" aria-label="Next image">›</button>
     </div>
-    <p class="lightbox-caption" aria-live="polite"></p>
   `;
   document.body.append(lightbox);
 
@@ -50,16 +52,30 @@ if (lightboxLinks.length) {
     return figureCaption?.textContent.trim() || link.querySelector("img")?.alt || "";
   };
 
+  const lightboxItems = [];
+  lightboxTriggers.forEach((link) => {
+    const existingItem = lightboxItems.find((item) => item.href === link.href);
+    const figureCaption = link.closest("figure")?.querySelector("figcaption")?.textContent.trim();
+    if (existingItem) {
+      if (figureCaption) existingItem.caption = figureCaption;
+      return;
+    }
+    lightboxItems.push({
+      href: link.href,
+      alt: link.querySelector("img")?.alt || "",
+      caption: getCaption(link),
+    });
+  });
+
   const showImage = (index) => {
-    currentIndex = (index + lightboxLinks.length) % lightboxLinks.length;
-    const link = lightboxLinks[currentIndex];
-    const thumbnail = link.querySelector("img");
-    image.src = link.href;
-    image.alt = thumbnail?.alt || "";
-    caption.textContent = getCaption(link);
-    counter.textContent = `${currentIndex + 1} / ${lightboxLinks.length}`;
-    previousButton.disabled = lightboxLinks.length < 2;
-    nextButton.disabled = lightboxLinks.length < 2;
+    currentIndex = (index + lightboxItems.length) % lightboxItems.length;
+    const item = lightboxItems[currentIndex];
+    image.src = item.href;
+    image.alt = item.alt;
+    caption.textContent = item.caption;
+    counter.textContent = `${currentIndex + 1} / ${lightboxItems.length}`;
+    previousButton.disabled = lightboxItems.length < 2;
+    nextButton.disabled = lightboxItems.length < 2;
   };
 
   const openLightbox = (index, trigger) => {
@@ -81,9 +97,10 @@ if (lightboxLinks.length) {
   const showPrevious = () => showImage(currentIndex - 1);
   const showNext = () => showImage(currentIndex + 1);
 
-  lightboxLinks.forEach((link, index) => {
+  lightboxTriggers.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
+      const index = lightboxItems.findIndex((item) => item.href === link.href);
       openLightbox(index, link);
     });
   });
@@ -103,7 +120,7 @@ if (lightboxLinks.length) {
   }, { passive: true });
 
   lightbox.addEventListener("touchend", (event) => {
-    if (touchStartX === null || lightboxLinks.length < 2) return;
+    if (touchStartX === null || lightboxItems.length < 2) return;
     const touchEndX = event.changedTouches[0]?.clientX ?? touchStartX;
     const distance = touchEndX - touchStartX;
     touchStartX = null;
