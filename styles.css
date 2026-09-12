@@ -189,7 +189,7 @@ p { margin-top: 0; }
 .cap-index { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .78rem; }
 .cap h3 { margin: 16px 0 10px; }
 .cap p, .public-card p, .prose { color: var(--muted); }
-.public-work { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.public-work { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .public-card { padding: 28px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
 .public-card a { text-decoration: none; }
 .tags, .stack-list { display: flex; flex-wrap: wrap; gap: 8px; }
