@@ -166,24 +166,23 @@ p { margin-top: 0; }
 .text-link { color: var(--navy); font-weight: 800; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .featured-image { min-height: 450px; overflow: hidden; border-left: 1px solid var(--line); background: #07101f; }
 .featured-image img { width: 100%; height: 100%; object-fit: cover; object-position: 67% 17%; }
-.project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
-.project-card { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: 0 12px 32px rgba(31, 47, 70, .06); }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.project-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: 0 12px 32px rgba(31, 47, 70, .06); }
 .project-card-image { display: block; overflow: hidden; border-bottom: 1px solid var(--line); background: #07101f; }
 .project-card-image img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center top; transition: transform .35s ease; }
 .project-card-image:hover img { transform: scale(1.015); }
-.project-card-copy { padding: 28px; }
+.project-card-copy { display: flex; flex: 1; flex-direction: column; padding: 28px; }
 .project-card-copy h3 { margin: 15px 0 12px; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: clamp(1.8rem, 3vw, 2.45rem); font-weight: 620; }
 .project-card-copy p { color: var(--muted); }
 .project-card-copy .tags { margin: 20px 0; }
-.project-card--package { display: grid; grid-column: 1 / -1; grid-template-columns: minmax(0, 1.05fr) minmax(330px, .95fr); }
-.project-card--package .project-card-image { min-height: 290px; border-right: 1px solid var(--line); border-bottom: 0; }
+.project-card--package .project-card-image { aspect-ratio: 16 / 9; min-height: 0; }
 .package-preview { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; padding: 32px; overflow: hidden; background: linear-gradient(135deg, #18365c 0%, #166d6b 54%, #d59a37 145%); color: white; }
 .package-preview::before { position: absolute; z-index: -1; width: 430px; height: 430px; border: 48px solid rgba(255,255,255,.16); border-radius: 50%; content: ""; right: -120px; top: -210px; }
 .package-preview-label, .package-preview-note { color: rgba(255,255,255,.78); font-size: .7rem; font-weight: 800; letter-spacing: .13em; }
-.package-preview-copy { max-width: 430px; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: clamp(2.3rem, 4vw, 4rem); font-weight: 620; line-height: .96; }
+.package-preview-copy { max-width: 430px; font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif; font-size: clamp(2.05rem, 3.3vw, 3.25rem); font-weight: 620; line-height: .96; }
 .package-preview-copy span { display: inline-block; opacity: 0; transform: translateY(.45em); animation: package-reveal 620ms cubic-bezier(.22, 1, .36, 1) var(--delay) forwards; }
 @keyframes package-reveal { to { opacity: 1; transform: translateY(0); } }
-.project-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+.project-links { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: auto; }
 .external-link { color: var(--teal); text-decoration-color: rgba(23, 109, 107, .48); }
 
 .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -329,8 +328,6 @@ p { margin-top: 0; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .package-preview-copy span { opacity: 1; transform: none; animation: none; } }
 @media (max-width: 900px) {
   .hero-grid, .featured-work, .project-grid, .split-section, .case-layout { grid-template-columns: 1fr; }
-  .project-card--package { grid-template-columns: 1fr; }
-  .project-card--package .project-card-image { min-height: 250px; border-right: 0; border-bottom: 1px solid var(--line); }
   .hero-grid { gap: 42px; }
   .hero-shot { max-width: 760px; }
   .featured-image { min-height: 380px; border-left: 0; border-top: 1px solid var(--line); }
